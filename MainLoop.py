@@ -102,7 +102,7 @@ class ChatBot(discord.Client):
             async with self.lock:
                 async with message.channel.typing():
                     determiner_reply = await self.send_to_oobabooga_bot(Final_Prompt, 'chat')
-            self.add_message(message.channel.id, self.user.name, determiner_reply)
+            self.add_message_determiner(message.channel.id, self.user.name, determiner_reply)
             if determiner_reply.casefold() == 'image':
                 if not message.guild and not config["bot"]["dm_images"]:
                     await message.channel.send('The owner of this bot has disabled image generation in direct messages',reference=message)

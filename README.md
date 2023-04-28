@@ -14,4 +14,4 @@ Advanced local chat and image bot for Discord. This bot uses Oobabooga and stabl
 
 # Other models
 Other text models, such as Vicuna, can be used, but they might produce weird responses as the parameters and formatting are not natively correct for them. If you change the text model you're using, it is recommended that you also change the parameters in the config.yaml file.
-As with text models, any model compatible with stable diffusion can be used, and if you aren't happy with the way it looks I recommend playing around with the parameters.
+As with text models, any model compatible with stable diffusion can be used, and if you aren't happy with the way it looks, I recommend playing around with the parameters.

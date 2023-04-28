@@ -73,7 +73,7 @@ class ChatBot(discord.Client):
             pnginfo = PngImagePlugin.PngInfo()
             pnginfo.add_text("parameters", response2.json().get("info"))
             image.save('output.png', 'PNG')
-            time.sleep(0.1)
+            time.sleep(0.3)
             await message.channel.send(file=discord.File('output.png'), reference=message)
 
     async def on_message(self, message):

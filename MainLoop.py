@@ -51,7 +51,6 @@ class ChatBot(discord.Client):
     async def generate_and_send_image(self, message, Nouns_first_line, config):
         url = config["bot"]["stable_url"]
         override_settings = {}
-        print(Nouns_first_line)
         payload = {
             "prompt": config["bot"]["diffusion_params"]["prompt_starter"] + Nouns_first_line,
             "steps": config["bot"]["diffusion_params"]["steps"],
@@ -75,7 +74,6 @@ class ChatBot(discord.Client):
             pnginfo.add_text("parameters", response2.json().get("info"))
             image.save('output.png', 'PNG')
             time.sleep(0.1)
-            print("Image saved!")
             await message.channel.send(file=discord.File('output.png'), reference=message)
 
     async def on_message(self, message):
@@ -99,9 +97,7 @@ class ChatBot(discord.Client):
         if any(self.is_trigger_word(word, trigger_words) for word in cap_removed_message.split()):
             prompt_starter = config["prompt"]["starter_determiner"]
             prompt_ender = config["prompt"]["ender_determiner"]
-            print(prompt_ender)
             last_message = '\n'.join(self.channel_messages[message.channel.id])
-            print(last_message)
             Final_Prompt = f"{prompt_starter}\n{last_message}\n{prompt_ender}"
             async with self.lock:
                 async with message.channel.typing():
@@ -115,7 +111,6 @@ class ChatBot(discord.Client):
                     await message.channel.send('The owner of this bot has disabled image generation',reference=message)
                     return
                 prompt_starter = config["prompt"]["starter_nouns"]
-                print(prompt_starter)
                 prompt_ender = config["prompt"]["ender_nouns"]
                 last_three_messages = '\n'.join(self.channel_messages[message.channel.id])
                 Final_Prompt = f"{prompt_starter}\n{last_three_messages}\n{prompt_ender}"

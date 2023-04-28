@@ -1,10 +1,10 @@
 bot:
   #put your bot token below, leave the quotation marks.
-  token: "MTEwMDU1NzAzNjgyMDg4OTYxMA.G8oN-G.8dhNFUMCgYIHJmVKJtSULrFtdWGfi2FODFK624"
+  token: "REPLACETHISWITHYOURTOKEN"
   #URL for stable diffusion, ex. http://127.0.0.1:5000 Leave the quotation marks.
-  stable_url: 'http://ai.ravstar.net:7860'
+  stable_url: 'REPLACETHISWITHYOURSTABLEDIFFUSIONURL'
   #URL for Oobabooga, ex. http://192.168.10.5:5000 Leave the quotation marks.
-  ooburl: 'http://ai.ravstar.net:5000'
+  ooburl: 'REPLACETHISWITHYOUROOBABOOGAURL'
   #allow bot to generate images (set to False with a capital F to prevent image generation)
   images: True
   #allow bot to respond to dms (set to False with a capital F to prevent responding to dms)

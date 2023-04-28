@@ -1,0 +1,154 @@
+bot:
+  #put your bot token below, leave the quotation marks.
+  token: "REPLACETHISWITHYOURTOKEN"
+  #URL for stable diffusion, ex. http://127.0.0.1:5000 Leave the quotation marks.
+  stable_url: 'REPLACETHISWITHYOURSTABLEDIFFUSIONURL'
+  #URL for Oobabooga, ex. http://192.168.10.5:5000 Leave the quotation marks.
+  ooburl: 'REPLACETHISWITHYOUROOBABOOGAURL'
+  #allow bot to generate images (set to False with a capital F to prevent image generation)
+  images: True
+  #allow bot to respond to dms (set to False with a capital F to prevent responding to dms)
+  dms: True
+  #allow bot to generate images in dms (set to False with a capital F to prevent image generation in dms)
+  dm_images: True
+  #parameters for image generation, these work well for Rev Animated, tinker with them if you use a different model.
+  diffusion_params: 
+    prompt_starter: "(masterpiece, high quality, good art, detailed,)"
+    steps: 15
+    negative_prompt: "3d, cartoon, anime, sketches, (worst quality, bad quality, child, cropped:1.4) ((monochrome)), ((grayscale)), (bad-hands-5:1.0), ((poorly drawn face)), (((mutation))), (((deformed))), ((ugly)), blurry, ((bad anatomy)), (((bad proportions))), ((extra limbs)), cloned face, (((disfigured))), out of frame, ugly, extra limbs, (bad anatomy), gross proportions, (malformed limbs), ((missing arms)), ((missing legs)), (((extra arms))), (((extra legs))), mutated hands, (fused fingers), (too many fingers), (((long neck))), signature, video game, ugly, tiling, poorly drawn hands, poorly drawn feet, poorly drawn face, out of frame, mutation, mutated, extra limbs, extra legs, extra arms, disfigured, deformed, cross-eye, body out of framea, blurry, bad art, bad anatomy, 3d render, ((boobs, nfsw, porn, nipples, vagina, cock, penis))"
+    sampler_name: 'DPM++ 2M Karras'
+    cfg_scale: 7
+    width: 512
+    height: 512
+#Parameters for the Obabooga chatbot, I would not recommend messsing with these unless you really know what youre doing.
+oobparams:
+  chat:
+    'max_new_tokens': 50
+    'do_sample': False
+    'temperature': 5
+    'top_p': 0.7
+    'typical_p': 0.9
+    'repetition_penalty': 1
+    'encoder_repetition_penalty': 0.8
+    'top_k': 40
+    'num_beams': 1
+    'penalty_alpha': 0
+    'min_length': 0
+    'length_penalty': 1.3
+    'no_repeat_ngram_size': 15
+    'early_stopping': True
+    'custom_stopping_strings': ["\n[", "\n[", "]:", "##", "###", "<noinput>", "\end"]
+    'seed': -1
+    'add_bos_token': True
+  determiner:
+    'max_new_tokens': 2
+    'do_sample': False
+    'temperature': 0.3
+    'top_p': 0.2
+    'typical_p': 0.9
+    'repetition_penalty': 0.1
+    'encoder_repetition_penalty': 1
+    'top_k': 40
+    'num_beams': 1
+    'penalty_alpha': 0
+    'min_length': 0
+    'length_penalty': 1.3
+    'no_repeat_ngram_size': 0
+    'early_stopping': True
+    'custom_stopping_strings': ["\n[", "\n[", "]:", "##", "###", "<noinput>", "\end"]
+    'seed': -1
+    'add_bos_token': True
+  nouns:
+    'max_new_tokens': 25
+    'do_sample': False
+    'temperature': 1
+    'top_p': 1
+    'typical_p': 0.9
+    'repetition_penalty': 1
+    'encoder_repetition_penalty': 1
+    'top_k': 40
+    'num_beams': 1
+    'penalty_alpha': 0
+    'min_length': 0
+    'length_penalty': 1.3
+    'no_repeat_ngram_size': 0
+    'early_stopping': True
+    'custom_stopping_strings': ["\n[", "\n[", "]:", "##", "###", "<noinput>", "\end"]
+    'seed': -1
+    'add_bos_token': True
+prompt:
+  starter_determiner: | 
+    Below is an instruction that describes a task. Write a response that appropriately completes the request
+    ### Instruction:
+    Determine if this user is trying to get/generate an image/picture, or if they are just trying to talk. Respond only with the word "image" if they want an image and "text" if they want text.
+    ### Ravstar:Hi how are you?
+    ### Determiner:text
+    ### Jack45:Take a selfi
+    ### Determiner:image
+    ### Ravstar:Generate william the third
+    ### Determiner:image
+    ### Ravstar:Generate a car in front of the sunset on a beach
+    ### Determiner:image
+    ### Ravstar:Whats in that
+    ### Determiner:text
+    ### Ravstar:Describe that photo
+    ### Determiner:text
+    ### Ravstar:What is your favorite color
+    ### Determiner:text
+    ### Northice12:what is the earth
+    ### Determiner:text
+    ### Northice12:take a picture of it
+    ### Determiner:image
+    ### John:shut up loser
+    ### Determiner:text
+    ### John:Im sorry
+    ### Determiner:text
+    #### Ravstar:say something dumb
+    ### Determiner:text
+    ### Ravstar:make a cat
+    ### Determiner:image
+    ### Ravstar:describe that image
+    ### Determiner:text
+  ender_determiner: '### Determiner:'
+  starter_nouns: |
+    Below is an instruction that describes a task. Write a response that appropriately completes the request.
+    ### Instruction:
+    After taking a photo, the describer describes all the nouns of things in that photo.
+    ### Ravstar:Take a picture of the grand canyon
+    ### Describer:Photograph, Photo, Grand Canyon, rocks, mesa, river, daytime, 
+    ### Ravstar:Illustrate a rock in front of a car on a cactus
+    ### Describer:digital art, illustration, rock, car, cactus, desert, drawing
+    ### Momlover22:Generate William Harold Keaten 
+    ### Describer:photo, man, indoors, books, writing, glasses
+    ### MXHYM:What is the moon made of
+    ### AVA:The moon is mainly composed of rock and dust (regolith). 
+    ### Ravstar:Take a picture of it
+    ### Describer:moon, space, rock, dust, earths moon, astro, stars, photo, 
+    ### Ravstar:How are you
+    ### AVA:Good thanks for asking
+  ender_nouns: |
+    Saving image....100%
+    Sucess - Image saved!
+    Now requesting nouns from image describer...
+    ### Describer:
+  starter_chatbot: |
+    Below is an instruction that describes a task. Write a response that appropriately completes the request
+    ### Instruction:
+    Extend this discussion with one brief response. Do not create any ravstar words or use the character '#' Do not use more than 50 words, or two scentences:
+    ### Ravstar:Hi how are you?
+    ### Botname:I'm okay, you?
+    ### Ravstar:What is your favorite color
+    ### Botname:Yellow, like the sun!
+    ### Northice12:what is the earth
+    ### Botname:The Earth is our home planet, orbiting around the Sun.
+    ### John:shut up loser
+    ### Botname:no u dumbass
+    ### Ravstar:say something dumb
+    ### Botname:fuck you
+    ### Jack45:Whats the biggest mountain
+    ### Botname:Mount Everest is the highest peak in the world, located in the Himalayas between Nepal and China.
+    ### Ravstar:How old are you
+    ### Botname:I'm 69 years old
+    ### John69:good morning
+    ### Botname:Hello.
+  ender_chatbot: '### Botname:' 

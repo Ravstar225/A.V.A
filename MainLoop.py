@@ -93,7 +93,7 @@ class ChatBot(discord.Client):
         # Store the message in the appropriate deque for determiner
         self.add_message_determiner(message.channel.id, message.author.name, message.content)
         cap_removed_message = message.content.casefold()
-        trigger_words = 'show','image','generate','create','draw','illustrate','make','produce','selfi','selfie','selfy','picture','photo','photograph','render','take','paint','painting','capture','compose','design','sketch','depict'
+        trigger_words = 'art','show','image','generate','create','draw','illustrate','make','produce','selfi','selfie','selfy','picture','photo','photograph','render','take','paint','painting','capture','compose','design','sketch','depict'
         if any(self.is_trigger_word(word, trigger_words) for word in cap_removed_message.split()):
             prompt_starter = config["prompt"]["starter_determiner"]
             prompt_ender = config["prompt"]["ender_determiner"]
@@ -110,14 +110,7 @@ class ChatBot(discord.Client):
                 if not config["bot"]["images"]:
                     await message.channel.send('The owner of this bot has disabled image generation',reference=message)
                     return
-                prompt_starter = config["prompt"]["starter_nouns"]
-                prompt_ender = config["prompt"]["ender_nouns"]
-                last_three_messages = '\n'.join(self.channel_messages[message.channel.id])
-                Final_Prompt = f"{prompt_starter}\n{last_three_messages}\n{prompt_ender}"
-                async with self.lock:  
-                    generation_nouns = await self.send_to_oobabooga_bot(Final_Prompt, 'nouns')
-                Nouns_first_line = generation_nouns.split("\n")[0]
-                await self.generate_and_send_image(message, Nouns_first_line, config)
+                await self.generate_and_send_image(message, message.content, config)
                 return
         Botname = self.user.name
         prompt_starter = config["prompt"]["starter_chatbot"]

@@ -1,10 +1,10 @@
 bot:
   #put your bot token below, leave the quotation marks.
-  token: "REPLACETHISWITHYOURTOKEN"
+  token: "MTEwMDU1NzAzNjgyMDg4OTYxMA.G8oN-G.8dhNFUMCgYIHJmVKJtSULrFtdWGfi2FODFK624"
   #URL for stable diffusion, ex. http://127.0.0.1:5000 Leave the quotation marks.
-  stable_url: 'REPLACETHISWITHYOURSTABLEDIFFUSIONURL'
+  stable_url: 'http://ai.ravstar.net:7860'
   #URL for Oobabooga, ex. http://192.168.10.5:5000 Leave the quotation marks.
-  ooburl: 'REPLACETHISWITHYOUROOBABOOGAURL'
+  ooburl: 'http://ai.ravstar.net:5000'
   #allow bot to generate images (set to False with a capital F to prevent image generation)
   images: True
   #allow bot to respond to dms (set to False with a capital F to prevent responding to dms)
@@ -17,7 +17,7 @@ bot:
     steps: 15
     negative_prompt: "3d, cartoon, anime, sketches, (worst quality, bad quality, child, cropped:1.4) ((monochrome)), ((grayscale)), (bad-hands-5:1.0), ((poorly drawn face)), (((mutation))), (((deformed))), ((ugly)), blurry, ((bad anatomy)), (((bad proportions))), ((extra limbs)), cloned face, (((disfigured))), out of frame, ugly, extra limbs, (bad anatomy), gross proportions, (malformed limbs), ((missing arms)), ((missing legs)), (((extra arms))), (((extra legs))), mutated hands, (fused fingers), (too many fingers), (((long neck))), signature, video game, ugly, tiling, poorly drawn hands, poorly drawn feet, poorly drawn face, out of frame, mutation, mutated, extra limbs, extra legs, extra arms, disfigured, deformed, cross-eye, body out of framea, blurry, bad art, bad anatomy, 3d render, ((boobs, nfsw, porn, nipples, vagina, cock, penis))"
     sampler_name: 'DPM++ 2M Karras'
-    cfg_scale: 7
+    cfg_scale: 6
     width: 512
     height: 512
 #Parameters for the Obabooga chatbot, I would not recommend messsing with these unless you really know what youre doing.
@@ -44,10 +44,10 @@ oobparams:
     'max_new_tokens': 2
     'do_sample': False
     'temperature': 0.3
-    'top_p': 0.2
-    'typical_p': 0.9
+    'top_p': 0.1
+    'typical_p': 1
     'repetition_penalty': 0.1
-    'encoder_repetition_penalty': 1
+    'encoder_repetition_penalty': 1.1
     'top_k': 40
     'num_beams': 1
     'penalty_alpha': 0
@@ -56,24 +56,6 @@ oobparams:
     'no_repeat_ngram_size': 0
     'early_stopping': True
     'custom_stopping_strings': ["\n[", "\n[", "]:", "##", "###", "<noinput>", "\end"]
-    'seed': -1
-    'add_bos_token': True
-  nouns:
-    'max_new_tokens': 25
-    'do_sample': False
-    'temperature': 0.5
-    'top_p': 0.7
-    'typical_p': 0.4
-    'repetition_penalty': 1
-    'encoder_repetition_penalty': 1
-    'top_k': 40
-    'num_beams': 1
-    'penalty_alpha': 0
-    'min_length': 0
-    'length_penalty': 1.3
-    'no_repeat_ngram_size': 18
-    'early_stopping': True
-    'custom_stopping_strings': ["\n","\n[", "\n[", "]:", "##", "###", "<noinput>", "\end"]
     'seed': -1
     'add_bos_token': True
 prompt:
@@ -105,30 +87,13 @@ prompt:
     ### Determiner:text
     #### Ravstar:say something dumb
     ### Determiner:text
+    ### Ravstar:What is in that last image
+    ### Determiner:text
     ### Ravstar:make a cat
     ### Determiner:image
     ### Ravstar:describe that image
     ### Determiner:text
   ender_determiner: '### Determiner:'
-  starter_nouns: |
-    Below is an instruction that describes a task. Write a response that appropriately completes the request.
-    ### Instruction:
-    After taking a photo, the describer describes all the nouns of things in that photo.
-    ### Ravstar:Take a picture of the grand canyon
-    ### Describer:Photograph, Photo, Grand Canyon, rocks, mesa, river, daytime, 
-    ### Ravstar:Illustrate a rock in front of a car on a cactus
-    ### Describer:digital art, illustration, rock, car, cactus, desert, drawing
-    ### Momlover22:Generate William Harold Keaten
-    ### Describer:photo, man, indoors, books, writing, glasses
-    ### Momlover22:make a picture of a dog
-    ### Describer:dog, canine, fur, paw, cute, photo
-    ### MXHYM:What is the moon made of
-    ### AVA:The moon is mainly composed of rock and dust (regolith). 
-    ### Ravstar:Take a picture of it
-    ### Describer:moon, space, rock, dust, earths moon, astro, stars, photo, 
-    ### Ravstar:How are you
-    ### AVA:Good thanks for asking
-  ender_nouns: '### Describer:'
   starter_chatbot: |
     Below is an instruction that describes a task. Write a response that appropriately completes the request
     ### Instruction:
